@@ -31,8 +31,9 @@ const HomeScreen: React.FC<Props> = (props: Props) => {
             <div>
                 <p>Type you name and click "Enter" below to begin</p>
                 <Input
+                    name="username"
                     value={name}
-                    onChange={(e: any) => { setName(e.target.name) }}
+                    onChange={(e: any) => { setName(e.target.value) }}
                 />
                 <Button onClick={handleSubmit}>Enter</Button>
             </div>

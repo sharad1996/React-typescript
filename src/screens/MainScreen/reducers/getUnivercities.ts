@@ -3,19 +3,16 @@ import { IEducationState } from "../types";
 
 const getUnivercitiesBegin = (state: IEducationState) => ({
     ...state,
-    univercitiesLoading: true,
 });
 
 const getUnivercitiesSuccess = (state: IEducationState, action: any) => ({
     ...state,
-    data: action.payload,
-    univercitiesLoading: false,
+    universities: action.payload,
 });
 
 const getUnivercitiesFailure = (state: IEducationState, action: any) => ({
     ...state,
     errors: action.payload,
-    univercitiesLoading: true,
 });
 
 export const getUnivercitiesHandlers = {
