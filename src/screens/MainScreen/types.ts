@@ -6,9 +6,10 @@ export interface IEducationState {
 
 export interface IEducation {
     university: string,
-    startYear: string,
-    endYear: string,
+    startYear: Date | null,
+    endYear: Date | null,
     degree: string,
     field: string,
-    grade: string
+    grade: string,
+    description: string
 }

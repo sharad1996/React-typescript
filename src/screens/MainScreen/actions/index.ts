@@ -1,2 +1,2 @@
-export * from "./getUnivercities"
+export * from "./getUniversities"
 export * from "./setEducationDetails";

@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import { Router } from "react-router-dom";
+import { ModalProvider } from 'styled-react-modal';
 import store from "./core/store";
 import { history } from "./core/history";
 import * as serviceWorker from './serviceWorker';
@@ -12,9 +13,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <Router history={history}>
-        <App />
-      </Router>
+      <ModalProvider>
+        <Router history={history}>
+          <App />
+        </Router>
+      </ModalProvider>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

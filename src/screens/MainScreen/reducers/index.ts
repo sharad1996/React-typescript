@@ -1,16 +1,18 @@
 import { createReducer } from "../../../core/reduxUtils";
-import { getUnivercitiesHandlers } from "./getUnivercities"
+import { getUniversitiesHandlers } from "./getUniversities";
+import { setEducationDetailsHandlers } from "./setEducationDetails";
 import { IEducationState } from "../types";
 
 const initialState: IEducationState = {
   data: [
     {
       university: "Oxford",
-      startYear: "24 Mar 2019",
-      endYear: "23 Mar 2020",
+      startYear: new Date(),
+      endYear: new Date(),
       degree: "Mtech",
       field: "test",
-      grade: "8.1"
+      grade: "8.1",
+      description: "Education is important for everyone"
     }
   ],
   errors: {},
@@ -18,7 +20,8 @@ const initialState: IEducationState = {
 };
 
 const handlers = {
-  ...getUnivercitiesHandlers
+  ...getUniversitiesHandlers,
+  ...setEducationDetailsHandlers,
 };
 
 const educationReducer = createReducer(initialState, handlers);

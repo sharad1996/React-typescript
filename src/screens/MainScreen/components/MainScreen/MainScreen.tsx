@@ -6,16 +6,18 @@ import { Button, StyleModal } from "../../../../sharedComponents";
 import { EducationBox } from "../EducationBox";
 import { SideNavBar } from "../SideNavBar";
 import { ModalContent } from "../ModalContent";
-import { setEducationDetails } from "../../actions";
+import { getUniversities, setEducationDetails } from "../../actions";
 import "../../styles.css";
 
 const mapStateToProps = (state: IRootState) => ({
+    universities: state.educations.universities,
     educations: state.educations.data,
     details: state.users
 });
 
 const mapDispatchToProps = {
     setEducationDetails,
+    getUniversities
 };
 
 type Props = ReturnType<typeof mapStateToProps> &
@@ -23,35 +25,44 @@ type Props = ReturnType<typeof mapStateToProps> &
 
 const MainScreen: React.FC<Props> = (props: Props) => {
     const [isModalOpen, setToggle] = useState<boolean>(false);
+    
     const handleToggle = () => {
         setToggle(!isModalOpen)
     }
+
     return (
-        <div className='col-lg-12'>
-            <div className='col-lg-12'>
-                <h2>Welcome to {props.details.name}'s education page.</h2>
-                <Button onClick={handleToggle}>Add new education</Button>
-                <StyleModal
-                    isOpen={isModalOpen}
-                    onBackgroundClick={handleToggle}
-                    onEscapeKeydown={handleToggle}
-                >
-                    <ModalContent
-                        setEducationDetails={props.setEducationDetails}
+        <>
+            <div className='row m-0'>
+                <div className='col-lg-12 mt-5'>
+                    <h6>Welcome to {props.details.name}'s education page.</h6>
+                    <Button onClick={handleToggle}>Add new education</Button>
+                    <StyleModal
+                        isOpen={isModalOpen}
+                        onBackgroundClick={handleToggle}
+                        onEscapeKeydown={handleToggle}
+                    >
+                        <ModalContent
+                            universities={props.universities}
+                            handleToggle={handleToggle}
+                            setEducationDetails={props.setEducationDetails}
+                            getUniversities={props.getUniversities}
+                        />
+                    </StyleModal>
+                </div>
+            </div>
+            <div className='row m-0'>
+                <div className='col-lg-2'>
+                    <SideNavBar
+                        educations={props.educations}
                     />
-                </StyleModal>
+                </div>
+                <div className='col-lg-10'>
+                    <EducationBox
+                        educations={props.educations}
+                    />
+                </div>
             </div>
-            <div className='col-lg-3'>
-                <SideNavBar
-                    educations={props.educations}
-                />
-            </div>
-            <div className='col-lg-9'>
-                <EducationBox
-                    educations={props.educations}
-                />
-            </div>
-        </div>
+        </>
     );
 };
 

@@ -9,11 +9,10 @@ type Props = IProps;
 
 const SideNavBar: React.FC<Props> = (props: Props) => {
     return (
-        <div className='sideNavBody'>
-            {props.educations && props.educations.length > 0 && props.educations.map((education: IEducation, index: number)=>(
-                <div key={`side-${index}`}>
-                    <h4>{education.university} University</h4>
-                </div>
+        <div className='sideNavBody p-2'>
+            <h6>Showcase University</h6>
+            {props.educations && props.educations.length > 0 && props.educations.map((education: IEducation, index: number) => (
+                <p key={`side-${index}`}>{education.university} University</p>
             ))}
         </div>
     );

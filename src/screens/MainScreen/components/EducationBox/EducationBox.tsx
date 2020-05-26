@@ -13,10 +13,11 @@ const EducationBox: React.FC<Props> = (props: Props) => {
         <Fragment>
             <div>
                 {props.educations && props.educations.length > 0 && props.educations.map((education: IEducation, index)=>(
-                    <div key={`education-${index}`} className='educationBody'>
-                        <h4>Graduate {education.field} @ {education.university} University</h4>
-                        <h6>{education.startYear}-{education.endYear}</h6>
-                        <span>Got degree of {education.degree} with {education.grade} grade</span>
+                    <div key={`education-${index}`} className='educationBody text-left p-2'>
+                        <h6>Graduate {education.field} @ {education.university} University</h6>
+                        <p>{education.startYear && education.startYear.toDateString()} - {education.endYear && education.endYear.toDateString()}</p>
+                        <p>Got degree of {education.degree} with {education.grade} grade</p>
+                        <p>{education.description}</p>
                     </div>
                 ))}
             </div>
