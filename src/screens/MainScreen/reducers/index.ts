@@ -1,5 +1,4 @@
 import { createReducer } from "../../../core/reduxUtils";
-import { getUniversitiesHandlers } from "./getUniversities";
 import { setEducationDetailsHandlers } from "./setEducationDetails";
 import { IEducationState } from "../types";
 
@@ -16,11 +15,9 @@ const initialState: IEducationState = {
     }
   ],
   errors: {},
-  universities: []
 };
 
 const handlers = {
-  ...getUniversitiesHandlers,
   ...setEducationDetailsHandlers,
 };
 

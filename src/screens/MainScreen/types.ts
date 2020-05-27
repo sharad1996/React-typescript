@@ -1,7 +1,6 @@
 export interface IEducationState {
     readonly data: IEducation[];
     readonly errors: object;
-    readonly universities: [];
 }
 
 export interface IEducation {

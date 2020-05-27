@@ -3,7 +3,6 @@ import AsyncSelect from 'react-select/async';
 
 type Props = {
     name: string;
-    options: any;
     onSelect: (key: string, value: string) => void;
     getOptions: (value: string) => void;
 }
@@ -17,47 +16,47 @@ type State = {
   inputValue: string,
 };
 
-const Select: React.FC<Props> = (props: Props, state: State) => {
+export const Select: React.FC<Props> = (props: Props, state: State) => {
     const[inputValue, setInputValue] = useState<string>("");
     const[selectedValue, setSelectedValue] = useState<IOption>({value: "", label: ""});
     
-    const filtersOptions = () => {
-        return (props.options && props.options.length > 0) 
-            ? props.options.map((option: any) => {
+    const filtersOptions = (options: any) => {
+        return (options && options.length > 0) 
+            ? options.map((option: any) => {
                 return ({ value: option.name, label: option.name });
             })
             : [];
     } 
 
-    const loadOptions = (inputValue: string, callback: any) => {
-        setTimeout(() => {
-            callback(filtersOptions());
-        }, 1000);
+    const loadOptions = async (inputValue: string, callback: any) => {
+        const data = await props.getOptions(inputValue);
+        callback(filtersOptions(data));
     };
     
     const handleInputChange = (newValue: string) => {
         const inputValue = newValue.replace(/\W/g, '');
         setInputValue(inputValue);
-        props.getOptions(inputValue);
         return inputValue;
     };
 
     const handleSelect = (selected: any) => {
         setSelectedValue(selected);
-        props.onSelect(props.name, selected.value);
+        if (selected) {
+            props.onSelect(props.name, selected.value);
+        }
     }
     
     return (
         <div className="select">
             <AsyncSelect
                 cacheOptions
+                isClearable
                 loadOptions={loadOptions}
                 defaultOptions
+                value={selectedValue}
                 onChange={handleSelect}
                 onInputChange={handleInputChange}
             />
         </div>
     );
 };
-
-export default Select;

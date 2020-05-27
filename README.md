@@ -1,7 +1,3 @@
-## General idea
-
-We hope to evaluate your programming skills in a project that has a very similar stack to ours, a preview of what you will be working with at Showwcase. 
-
 ## What you will be building
 
 Your challenge is to create a simple web app in the technology you are applying to work in. Your task is to simulate how a user will be able to input their educational background into their Showwcase profile page. 

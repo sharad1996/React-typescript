@@ -3,21 +3,19 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { IRootState } from "../../../../core/root-reducer";
 import { Button, StyleModal } from "../../../../sharedComponents";
-import { EducationBox } from "../EducationBox";
-import { SideNavBar } from "../SideNavBar";
-import { ModalContent } from "../ModalContent";
-import { getUniversities, setEducationDetails } from "../../actions";
+import EducationBox from "./EducationBox";
+import SideNavBar from "./SideNavBar";
+import ModalContent from "./ModalContent";
+import { setEducationDetails } from "../../actions";
 import "../../styles.css";
 
 const mapStateToProps = (state: IRootState) => ({
-    universities: state.educations.universities,
     educations: state.educations.data,
     details: state.users
 });
 
 const mapDispatchToProps = {
     setEducationDetails,
-    getUniversities
 };
 
 type Props = ReturnType<typeof mapStateToProps> &
@@ -42,10 +40,8 @@ const MainScreen: React.FC<Props> = (props: Props) => {
                         onEscapeKeydown={handleToggle}
                     >
                         <ModalContent
-                            universities={props.universities}
                             handleToggle={handleToggle}
                             setEducationDetails={props.setEducationDetails}
-                            getUniversities={props.getUniversities}
                         />
                     </StyleModal>
                 </div>

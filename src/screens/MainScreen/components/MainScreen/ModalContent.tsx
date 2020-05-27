@@ -2,15 +2,13 @@ import * as React from "react";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Label, Input, Button, Textarea } from "../../../../sharedComponents";
+import { Label, Input, Button, Textarea, Select } from "../../../../sharedComponents";
 import { IEducation } from "../../types";
-import { Select } from "../AsyncSelect";
+import { getUniversities } from "../../../../services";
 
 interface IProps {
-    universities: any;
     handleToggle: () => void;
     setEducationDetails: (details: IEducation) => void;
-    getUniversities: (value: string) => void;
 }
 
 interface IState {
@@ -51,8 +49,7 @@ const ModalContent: React.FC<Props> = (props: Props, state: IState) => {
                         <Select
                             name="university"
                             onSelect={handleChange}
-                            options={props.universities}
-                            getOptions={props.getUniversities}
+                            getOptions={getUniversities}
                         />
                     </div>
                 </div>
